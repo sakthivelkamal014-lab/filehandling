@@ -7,16 +7,16 @@ This program allows users to create folders, create files, write content, read c
 
 Features:-
 
-Create a new folder
-Create a new file
-Add content to a file
-Read content from a file
-Delete a file
-Delete a folder
-Display current file name
-Display current folder name
-Rename a folder
-Rename a file
+Create a new folder, 
+Create a new file, 
+Add content to a file, 
+Read content from a file, 
+Delete a file, 
+Delete a folder, 
+Display current file name, 
+Display current folder name, 
+Rename a folder, 
+Rename a file, 
 
 Technology Used:-
 
