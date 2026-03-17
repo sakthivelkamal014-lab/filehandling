@@ -47,7 +47,7 @@ class FileManager
                     }
                     catch(Exception e)
                     {
-                        System.out.println(e);
+                        System.out.println("\n\t\tProblem Occured While File Creation");
                     }
                     break;
 
@@ -64,7 +64,7 @@ class FileManager
                     }
                     catch(Exception e)
                     {
-                        System.out.println(e);
+                        System.out.println("\n\t\tContent Not Updated");
                     }
                     break;
 
