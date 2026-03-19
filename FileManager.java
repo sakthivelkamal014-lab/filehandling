@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 import java.io.*;
 class FileManager
 {
@@ -8,10 +9,11 @@ class FileManager
     static int choice;
     static int ch;
     static String folderName;
+    static String fileName ;
     public static void main(String args[])
     {
         System.out.println("\t\t\t\t\tFILE MANAGEMENT");
-        System.out.println("\n\t\t1.Create New Folder\n\t\t2.Create New File\n\t\t3.Add Content To the file\n\t\t4.Read Content to the file\n\t\t5.Delete the file\n\t\t6.Delete the Folder\n\t\t7.Current File Name\n\t\t8.Current Folder Name\n\t\t9.Folder Rename\n\t\t10.File Rename\n\t\t11.Exit");
+        System.out.println("\n\t\t1.Create New Folder\t\t\t8.Current File Name\n\t\t2.Create New File\t\t\t9.Current Folder Name\n\t\t3.Add Content\t\t\t\t10.File Rename\n\t\t4.Read Content\t\t\t\t11.Folder Rename\n\t\t5.Go To File\t\t\t\t12.Delete File\n\t\t6.Go To Folder\t\t\t\t13.Delete Folder\n\t\t7.Copy\t\t\t\t\t14.Exit");
         do
         {
             System.out.print("\n\t\tEnter Your Choice: ");
@@ -31,7 +33,7 @@ class FileManager
                 case 2:
                     scan.nextLine();
                     System.out.print("\n\t\tEnter Your File Name: ");
-                    String fileName = scan.nextLine();
+                    fileName = scan.nextLine();
                     file = new File("C:\\Users\\MAC PRO\\Desktop\\"+folderName+"\\"+fileName);
                     try
                     {
@@ -75,7 +77,8 @@ class FileManager
                         while((ch = filereader.read()) != -1)
                         {
                             System.out.print("\n\t\t"+(char)ch);
-                        }           
+                        }         
+                        filereader.close();  
                     }
                     catch(Exception e)
                     {   
@@ -89,22 +92,79 @@ class FileManager
                         }
                     }
                     break;
-            
                 case 5:
+                    {
+                        scan.nextLine();
+                        System.out.print("\n\t\tEnter Your Location File: ");
+                        String goFileName = scan.nextLine();
+                        try
+                        {
+                            FileInputStream gofi = new FileInputStream("..\\"+goFileName);
+                        }
+                        catch(Exception e)
+                        {
+                            System.out.println("\n\t\tFile Not Found");
+                        }
+                        
+                    }
+                    break;
+
+                case 6:
+                    {
+                        scan.nextLine();
+                        System.out.print("\n\t\tEnter Your Location Folder: ");
+                        String goFolderName = scan.nextLine();
+                        try
+                        {
+                            FileInputStream gofo = new FileInputStream("..\\"+goFolderName);
+                        }
+                        catch(Exception e)
+                        {
+                            System.out.println("\n\t\tFolder Not Found");
+                        }
+                    }
+                    break;
+
+                case 7:
+                    {
+                        scan.nextLine();
+                        System.out.print("\n\t\tEnter Where From: ");
+                        String FromWhere = scan.nextLine();
+                        System.out.print("\n\t\tEnter Where To: ");
+                        String ToWhere = scan.nextLine();
+                        try
+                        {
+                            FileInputStream fw = new FileInputStream("C:\\Users\\MAC PRO\\Desktop\\"+folderName+"\\"+fileName);
+                            FileOutputStream tw = new FileOutputStream("C:\\Users\\MAC PRO\\Desktop\\"+folderName+"\\"+fileName);
+                            int i;
+                            while((i = fw.read()) != -1)
+                            {
+                                tw.write(i);
+                            }
+                            tw.close();
+                            fw.close();
+                        }
+                        catch(Exception e)
+                        {
+                            System.out.println("\n\t\tDesination Problem");
+                        }
+                    }
+                    break;
+                case 12:
                     {  
                         file.delete();
                         System.out.println("\n\t\tCurrent file is deleted");
                     }
                     break;
             
-                case 6:
+                case 13:
                     {
                         folder.delete();
                         System.out.println("\n\t\tCurrent Folder is Deleted");
                     }
                     break;
                 
-                case 7:
+                case 8:
                     {
                         try
                         {
@@ -117,7 +177,7 @@ class FileManager
                         }
                     }
                     break;
-                case 8:
+                case 9:
                     {
                         try
                         {
@@ -149,7 +209,7 @@ class FileManager
                         break;
                     }
                 
-                case 9:
+                case 11:
                     {
                         scan.nextLine();
                         System.out.print("\n\t\tEnter Your New Folder Name: ");
@@ -166,7 +226,7 @@ class FileManager
                         }
                         break;
                     }
-                case 11:
+                case 14:
                     {
                         System.out.println("\n\t\tProcess Ends Thank You");           
                     }
@@ -174,10 +234,15 @@ class FileManager
                 default:
                     break;
             }
-        }while(choice != 11);
+        }while(choice != 14);
     }   
 }
 
 
 
 
+//before:
+//see the print line after the file manager top heading : need to update three operation copy , go to file, go to folder. carfull watch the (case numbers eg:case 3:)
+
+//after
+//i havae slove some thing like i have done the copy and goto file and folder code but the excution process problem occurs find and slove the problem
