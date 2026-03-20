@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.concurrent.ExecutionException;
 import java.io.*;
 class FileManager
 {
@@ -127,27 +126,39 @@ class FileManager
 
                 case 7:
                     {
-                        scan.nextLine();
-                        System.out.print("\n\t\tEnter Where From: ");
-                        String FromWhere = scan.nextLine();
-                        System.out.print("\n\t\tEnter Where To: ");
-                        String ToWhere = scan.nextLine();
                         try
                         {
-                            FileInputStream fw = new FileInputStream("C:\\Users\\MAC PRO\\Desktop\\"+folderName+"\\"+fileName);
-                            FileOutputStream tw = new FileOutputStream("C:\\Users\\MAC PRO\\Desktop\\"+folderName+"\\"+fileName);
-                            int i;
-                            while((i = fw.read()) != -1)
+                            scan.nextLine();
+                            System.out.print("\n\t\tEnter Your Full Source Path: ");
+                            String sourcepath = scan.nextLine();
+                            System.out.print("\n\t\tEnter Your Full Desination Path: ");
+                            String Desipath = scan.nextLine();
+                            File sourceFile = new File(sourcepath);
+                            File desiFile = new File(Desipath);
+                            if(!sourceFile.exists())
                             {
-                                tw.write(i);
+                                System.out.println("\n\t\t--Source File is Not Found--");
+                                break;
                             }
-                            tw.close();
-                            fw.close();
+                            if(!desiFile.exists())
+                            {
+                                System.out.println("\n\t\t--Desination File is NOt Found--");
+                                desiFile.createNewFile();
+                            }
+                            FileInputStream sfile = new FileInputStream(sourceFile);
+                            FileOutputStream dfile = new FileOutputStream(desiFile);
+                            int i;
+                            while((i = sfile.read()) != -1)
+                            {
+                                dfile.write(i);
+                            }
+                            System.out.println("\n\t\t---File is successsfully copied---");
                         }
                         catch(Exception e)
                         {
-                            System.out.println("\n\t\tDesination Problem");
+                            System.out.println("\n\t\tProblem occrued is File Copy");
                         }
+
                     }
                     break;
                 case 12:
@@ -246,3 +257,6 @@ class FileManager
 
 //after
 //i havae slove some thing like i have done the copy and goto file and folder code but the excution process problem occurs find and slove the problem
+
+//afer somtime (after day):-
+//probleam not solved at 6,7,5 goto fil,folder,and copy this is problem the work is not done properly.
