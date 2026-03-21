@@ -160,22 +160,36 @@ class FileManager
                         }
                         catch(Exception e)
                         {
-                            System.out.println("\n\t\tProblem occrued in File Copy");
+                            System.out.println("\n\t\tProblem occrued incd filehandling File Copy");
                         }
 
                     }
                     break;
                 case 12:
                     {  
-                        file.delete();
-                        System.out.println("\n\t\tCurrent file is deleted");
+                        if(file != null && file.exists())
+                        {
+                            file.delete();
+                            System.out.println("\n\t\tCurrent file is deleted");
+                        }
+                        else
+                        {
+                            System.out.println("\n\t\t--File is Not Exists Or It May Be Empty Check It--");
+                        }
                     }
                     break;
             
                 case 13:
                     {
-                        folder.delete();
-                        System.out.println("\n\t\tCurrent Folder is Deleted");
+                        if(folder != null && folder.exists())
+                        {
+                            folder.delete();
+                            System.out.println("\n\t\tCurrent Folder is Deleted");
+                        }
+                        else
+                        {
+                            System.out.println("\n\t\t--Folder is Not Exists Or It May Be Empty Check It--");
+                        }
                     }
                     break;
                 
@@ -256,13 +270,3 @@ class FileManager
 
 
 
-//before:
-//see the print line after the file manager top heading : need to update three operation copy , go to file, go to folder. carfull watch the (case numbers eg:case 3:)
-
-//after
-//i havae slove some thing like i have done the copy and goto file and folder code but the excution process problem occurs find and slove the problem
-
-//afer somtime (after day):-
-//probleam not solved at 6,7,5 goto fil,folder,and copy this is problem the work is not done properly.
-
-//mostly 6,7,5 are have small error fix it 
