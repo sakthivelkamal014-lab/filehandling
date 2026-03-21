@@ -9,6 +9,8 @@ class FileManager
     static int ch;
     static String folderName;
     static String fileName ;
+    static File currentFolder = new File("C:\\Users\\MAC PRO\\Desktop");
+    static File currentFile = null;
     public static void main(String args[])
     {
         System.out.println("\t\t\t\t\tFILE MANAGEMENT");
@@ -75,7 +77,7 @@ class FileManager
                         FileReader filereader = new FileReader(file);
                         while((ch = filereader.read()) != -1)
                         {
-                            System.out.print("\n\t\t"+(char)ch);
+                            System.out.print("\t\t"+(char)ch);
                         }         
                         filereader.close();  
                     }
@@ -94,17 +96,19 @@ class FileManager
                 case 5:
                     {
                         scan.nextLine();
-                        System.out.print("\n\t\tEnter Your Location File: ");
-                        String goFileName = scan.nextLine();
-                        try
+                        System.out.print("\n\t\tEnter Your Exact File Path: ");
+                        String filepath = scan.nextLine();
+                        File tempFile = new File(filepath);
+                        if(tempFile.exists() && tempFile.isFile())
                         {
-                            FileInputStream gofi = new FileInputStream("..\\"+goFileName);
+                            currentFile = tempFile;
+                            currentFolder = tempFile.getParentFile();
+                            System.out.println("\n\t\tNoe You Are In: "+ currentFile.getAbsolutePath());
                         }
-                        catch(Exception e)
+                        else
                         {
-                            System.out.println("\n\t\tFile Not Found");
+                            System.out.print("\n\t\tFile Path is Wrong Check It");
                         }
-                        
                     }
                     break;
 
@@ -156,7 +160,7 @@ class FileManager
                         }
                         catch(Exception e)
                         {
-                            System.out.println("\n\t\tProblem occrued is File Copy");
+                            System.out.println("\n\t\tProblem occrued in File Copy");
                         }
 
                     }
@@ -260,3 +264,5 @@ class FileManager
 
 //afer somtime (after day):-
 //probleam not solved at 6,7,5 goto fil,folder,and copy this is problem the work is not done properly.
+
+//mostly 6,7,5 are have small error fix it 
